@@ -18,15 +18,43 @@
  */
 package org.example.service;
 
-import org.springframework.stereotype.Component;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-/**
- * Util class.
- */
-@Component
-public class Util {
+@Entity
+public class Product {
 
-    public void print(String msg) {
-        System.out.println(msg);
+    @Id
+    private Integer id;
+    private String name;
+
+    public Product() {
     }
+
+    public Product(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Product [id=" + id + ", name=" + name + "]";
+    }
+
 }

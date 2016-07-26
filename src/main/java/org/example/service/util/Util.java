@@ -16,29 +16,17 @@
  *  under the License.
  *
  */
-package org.example.service;
+package org.example.service.util;
+
+import org.springframework.stereotype.Component;
 
 /**
- * InvalidNameException.
+ * Util class.
  */
-public class InvalidNameException extends Exception {
-    public InvalidNameException() {
-        super();
-    }
+@Component
+public class Util {
 
-    public InvalidNameException(String message) {
-        super(message);
-    }
-
-    public InvalidNameException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    public InvalidNameException(Throwable cause) {
-        super(cause);
-    }
-
-    protected InvalidNameException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
+    public void print(String msg) {
+        System.out.println(msg);
     }
 }

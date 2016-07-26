@@ -18,18 +18,32 @@
  */
 package org.example.service;
 
-import javax.ws.rs.core.Response;
-import javax.ws.rs.ext.ExceptionMapper;
 
-/**
- * InvalidNameExceptionMapper.
- */
-public class InvalidNameExceptionMapper implements ExceptionMapper<InvalidNameException> {
-    @Override
-    public Response toResponse(InvalidNameException e) {
-        return Response.status(500).
-                entity(e.getMessage()).
-                type("text/plain").
-                build();
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+@Component
+public class ProductDAO {
+
+    @PersistenceContext
+    private EntityManager em;
+
+    public void persist(Product product) {
+        em.persist(product);
     }
+
+    public List<Product> findAll() {
+        return em.createQuery("SELECT p FROM Product p").getResultList();
+    }
+
+    public Product find(Integer id) {
+        Query query = em.createQuery("SELECT p FROM Product p where id = :id");
+        query.setParameter("id", id);
+        return (Product) query.getSingleResult();
+    }
+
 }

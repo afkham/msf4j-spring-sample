@@ -16,13 +16,22 @@
  *  under the License.
  *
  */
-package org.example.service;
+package org.example.service.exception;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 
-public class Application {
+import javax.persistence.NoResultException;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.ext.ExceptionMapper;
 
-    public static void main(String[] args) {
-        new ClassPathXmlApplicationContext("classpath:/spring.xml");
+/**
+ * Maps NoResultException to an HTTP response.
+ */
+@Component
+public class NoResultExceptionMapper implements ExceptionMapper<NoResultException> {
+
+    @Override
+    public Response toResponse(NoResultException e) {
+        return Response.status(Response.Status.NOT_FOUND).type("text/plain").entity(e.getMessage()).build();
     }
 }

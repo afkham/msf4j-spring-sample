@@ -16,13 +16,21 @@
  *  under the License.
  *
  */
-package org.example.service;
+package org.example.service.exception;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.stereotype.Component;
 
-public class Application {
+import javax.ws.rs.core.Response;
+import javax.ws.rs.ext.ExceptionMapper;
 
-    public static void main(String[] args) {
-        new ClassPathXmlApplicationContext("classpath:/spring.xml");
+/**
+ * Maps DataIntegrityViolationException to an HTTP response.
+ */
+@Component
+public class DataIntegrityViolationExceptionMapper implements ExceptionMapper<DataIntegrityViolationException> {
+    @Override
+    public Response toResponse(DataIntegrityViolationException e) {
+        return Response.status(Response.Status.CONFLICT).type("text/plain").entity("Data integrity violation").build();
     }
 }
