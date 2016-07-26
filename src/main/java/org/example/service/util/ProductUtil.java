@@ -19,7 +19,6 @@
 package org.example.service.util;
 
 import org.example.service.Product;
-import org.example.service.ProductDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

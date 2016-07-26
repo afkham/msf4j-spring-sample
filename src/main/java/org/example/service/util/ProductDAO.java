@@ -16,9 +16,10 @@
  *  under the License.
  *
  */
-package org.example.service;
+package org.example.service.util;
 
 
+import org.example.service.Product;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
